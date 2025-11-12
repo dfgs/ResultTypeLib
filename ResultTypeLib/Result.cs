@@ -51,16 +51,17 @@
         {
             return succeded;
         }
+		public bool Succeeded(out T Value)
+		{
+            Value = this.Value;
+			return succeded;
+		}
 
-
-        public bool Match(Action<T> OnSuccess, Action<Exception> OnFailure)
+		public IResult<T> Match(Action<T> OnSuccess, Action<Exception> OnFailure)
         {
             if (succeded) OnSuccess(Value); else OnFailure(ex);
-            return this.succeded;
+            return this;
         }
-
-
-
 
 
         public static implicit operator Result<T>(T Value) => new Result<T>(Value);

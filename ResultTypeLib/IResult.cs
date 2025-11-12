@@ -8,8 +8,10 @@ namespace ResultTypeLib
 {
     public interface IResult<T>
     {
-        bool Match(Action<T> OnSuccess, Action<Exception> OnFailure);
-        bool Succeeded();
+        IResult<T> Match(Action<T> OnSuccess, Action<Exception> OnFailure);
+		bool Succeeded();
+		bool Succeeded(out T Value);
 
-    }
+
+	}
 }
